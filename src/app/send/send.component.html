@@ -1,0 +1,21 @@
+<div class="">
+    <div class="">
+        <select [(ngModel)]="selectedOption" class="border border-gray-300 rounded-lg p-2">
+          <option value="zalo">Gửi qua Zalo</option>
+          <option value="gmail">Gửi qua Gmail</option>
+          <option value="both">Gửi qua cả Zalo và Gmail</option>
+        </select>
+    </div>
+    <div class="mb-4 mt-4">
+        <label for="message" class="block text-lg font-medium mb-2">Message:</label>
+        <textarea [(ngModel)]="message" id="message" rows="4" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Enter your message here..."></textarea>
+    </div>
+
+    <button (click)="sendMessage()" class="ml-auto bg-blue-500 hover:bg-red-500 text-white py-2 px-6 rounded w-full">Gửi</button>
+    <div *ngIf="selectedUsers.length > 0">
+        <h2 class="font-bold">Người dùng đã chọn:</h2>
+        <ul>
+            <li *ngFor="let user of selectedUsers">{{ user.name }} ({{ user.sdt }})</li>
+        </ul>
+    </div>
+</div>

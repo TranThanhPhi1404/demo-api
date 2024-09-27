@@ -1,0 +1,44 @@
+<div class="w-full">
+    <div class="flex items-center justify-center bg-yellow-50 p-5">
+        <h1 class="text-3xl font-bold text-center text-red-500 ">Danh sách Người dùng</h1>
+    </div>
+    <div class="flex justify-between bg-yellow-50">
+        <ul class="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white p-5 rounded-lg shadow-lg w-full">
+
+            <li *ngFor="let user of filteredUsers" class="p-4 bg-gray-100 rounded-lg shadow-md flex flex-col items-start">
+                <p class="font-semibold">Name: {{ user.name }}</p>
+                <p class="text-gray-600">Email: {{ user.email }}</p>
+                <p class="text-gray-500">SDT: {{ user.sdt }}</p>
+                <div class="flex items-center gap-12 p-5">
+                    <input class="w-[30px] h-[30px]" type="checkbox" [checked]="selectedUsers.includes(user)" (change)="toggleUserSelection(user)" formControlName="isSubscribed" />
+                    <div class="flex lg:flex-col gap-2">
+                        <button [routerLink]="['/edit', user.sdt]" class="mt-2 bg-blue-500 text-white py-1 px-3 rounded">
+                            <i class="fa-solid fa-user-pen"></i>
+                            Sửa</button>
+                        <button [routerLink]="['/delete', user.sdt]" (click)="deleteUser(user.sdt)" class="mt-2 bg-red-500 text-white py-1 px-3 rounded">
+                            <i class="fa-solid fa-trash"></i>
+                            Xóa</button>
+                        <button (click)="toggleDetails(user.sdt)" class="mt-2 bg-green-500 text-white py-1 px-3 rounded">
+                            <i class="fa-solid fa-circle-user"></i>
+                            Chi tiết</button>
+
+                        <div *ngIf="isDetailVisible[user.sdt]" class="p-2 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <div class="bg-white p-4 rounded shadow-lg w-1/3 gap-4 space-y-4">
+                                <p>Đây là thông tin chi tiết bạn muốn hiển thị </p>
+                                <h1>Name: {{ user.name }}</h1>
+                                <h1>Email: {{ user.email }}</h1>
+                                <h1>SDT: {{ user.sdt }}</h1>
+                                <button (click)="closeModal(user.sdt)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                Exit
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+</div>

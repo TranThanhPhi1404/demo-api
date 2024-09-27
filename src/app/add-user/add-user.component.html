@@ -1,0 +1,39 @@
+<div class="text-center justify-center items-center px-[500px] py-5 space-y-4">
+    <h2 class="text-xl font-bold">Thêm Người Dùng</h2>
+    <form [formGroup]="userForm" (ngSubmit)="addUser()" class="space-y-4">
+        <div class="flex items-center justify-between">
+            <label class="block mr-4">Tên:</label>
+            <input formControlName="name" class="border p-2 resize-none w-[400px]" required>
+        </div>
+        <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-red-600">
+            Vui lòng nhập tên
+        </div>
+
+        <div class="flex items-center justify-between">
+            <label class="block mr-4">Email:</label>
+            <input formControlName="email" placeholder="abc@123.com" class="border p-2 resize-none w-[400px]" required>
+        </div>
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-600">
+            Vui lòng nhập email hợp lệ.
+        </div>
+
+        <div class="flex items-center justify-between">
+            <label class="block mr-4">Số Điện Thoại:</label>
+            <input formControlName="sdt" class="border p-2 resize-none z w-[400px]" required>
+        </div>
+        <div *ngIf="userForm.get('sdt')?.invalid && userForm.get('sdt')?.touched" class="text-red-600">
+            Vui lòng nhập số điện thoại.
+        </div>
+        <div *ngIf="errorMessage" class="mt-4 text-red-600">
+            {{ errorMessage }}
+        </div>
+
+        <div class="flex justify-between mt-4">
+            <button [routerLink]="['/main']" class="bg-gray-300 text-black py-2 px-4 rounded">Trở lại</button>
+            <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Thêm</button>
+        </div>
+        <div *ngIf="errorMessage" class="mt-4 text-red-600">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>
